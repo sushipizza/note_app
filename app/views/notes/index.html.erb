@@ -15,6 +15,7 @@
         <th><%= note.description %></th>
         <th><%= link_to 'Edytuj', edit_note_path(note) %></th>    
         <th><%= link_to 'Pokaz', note_path(note) %></th>  
+        <th><%= link_to 'Usun', note_path(note), method: :delete, data: {confirm: "Na pewno?"} %></th>  
     </tr>
     <% end %>
 </table>
