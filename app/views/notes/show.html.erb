@@ -1,0 +1,15 @@
+<h1>Pokazanie notatki</h1>
+
+<p>
+    Title: <%= @note.title %>
+</p>
+<p>
+    Description: <%= @note.description %>
+</p>
+
+<p>
+    <%= link_to "Edytuj", edit_note_path %>
+</p>
+<p>
+    <%= link_to "Wroc do listy", notes_path %>
+</p>
