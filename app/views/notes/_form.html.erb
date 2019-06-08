@@ -1,25 +1,3 @@
-<% if @note.errors.any? %>
-    <div class="row">
-        <div class="col-xs-8 col-xs-offset-2">
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <h2 class="panel-title">
-                        <%= pluralize(@note.errors.count, "error") %>
-                        Nie mozna zapisac notatki
-                    </h2>
-                    <div class="panel-body">
-                        <ul>
-                            <% @note.errors.full_messages.each do |msg| %>
-                                <li><%= msg %></li>
-                            <% end %>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<% end %>
-
 <%= simple_form_for @note do |f| %>
     <%= f.input :title %>
     
