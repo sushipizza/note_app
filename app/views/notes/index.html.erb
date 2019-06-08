@@ -4,18 +4,19 @@
     <%= link_to "Nowa notatka", new_note_path %>
 </p>
 
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Description</th>
-    </tr>
-    <% @notes.each do |note| %>
-    <tr>
-        <th><%= note.title %></th>
-        <th><%= note.description %></th>
-        <th><%= link_to 'Edytuj', edit_note_path(note) %></th>    
-        <th><%= link_to 'Pokaz', note_path(note) %></th>  
-        <th><%= link_to 'Usun', note_path(note), method: :delete, data: {confirm: "Na pewno?"} %></th>  
-    </tr>
-    <% end %>
-</table>
+
+<% @notes.each do |note| %>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h3 class="display-5">
+                <%= note.title %>
+            </h3>
+            <p class="lead">
+                <%= note.description %>
+            </p>
+            <%= link_to "Edytuj", edit_note_path(note) , class: "btn btn-sm btn-primary" %>
+    <%= link_to "Wróc do listy", notes_path , class: "btn btn-sm btn-success" %>
+    <%= link_to 'Usuń', note_path(note), method: :delete, data: {confirm: "Na pewno?"}, class: "btn btn-sm btn-danger" %>
+        </div>
+    </div>
+<% end %>

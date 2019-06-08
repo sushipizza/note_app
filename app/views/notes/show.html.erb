@@ -1,15 +1,22 @@
-<h1>Pokazanie notatki</h1>
+<h2>Pokazanie notatki: <%= @note.title %></h2>
+
+<div class="well col-xs-8 col-xs-offset-2">
+    <hr>
+    <% if @note.description.empty? %>
+        <p>
+            brak
+        </p>
+    <% else %>
+        <p>
+            <%= @note.description %>
+        </p>
+    <% end %>
+</div>
+
+
 
 <p>
-    Title: <%= @note.title %>
-</p>
-<p>
-    Description: <%= @note.description %>
-</p>
-
-<p>
-    <%= link_to "Edytuj", edit_note_path %>
-</p>
-<p>
-    <%= link_to "Wroc do listy", notes_path %>
+    <%= link_to "Edytuj", edit_note_path , class: "btn btn-primary" %>
+    <%= link_to "Wróc do listy", notes_path , class: "btn btn-success" %>
+    <%= link_to 'Usuń', note_path(@note), method: :delete, data: {confirm: "Na pewno?"}, class: "btn btn-danger" %>
 </p>
