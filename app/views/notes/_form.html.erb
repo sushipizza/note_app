@@ -1,25 +1,34 @@
 <% if @note.errors.any? %>
-<ul>
-    <% @note.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-    <% end %>
-</ul>
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h2 class="panel-title">
+                        <%= pluralize(@note.errors.count, "error") %>
+                        Nie mozna zapisac notatki
+                    </h2>
+                    <div class="panel-body">
+                        <ul>
+                            <% @note.errors.full_messages.each do |msg| %>
+                                <li><%= msg %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <% end %>
 
-<%= form_for @note do |f| %>
-  <p>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-  </p>
-  <p>
-      <%= f.label :description %>
-      <%= f.text_area :description %>
-  </p>
-  <p>
-      <%= f.submit %>
-  </p>
+<%= simple_form_for @note do |f| %>
+    <%= f.input :title %>
+    
+    <%= f.input :description %>
+    
+    <%= f.button :submit, class: "btn-primary" %>
 <% end %>
 
+</br>
 <p>
-    <%= link_to "Wroc do listy", notes_path %>
+    <%= link_to "Wroc do listy", notes_path , class: "btn btn-success" %>
 </p>
