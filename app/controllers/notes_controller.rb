@@ -15,6 +15,7 @@ class NotesController < ApplicationController
    def create
        #render plain: params[:note].inspect
        @note = Note.new(note_params)
+       @note.user = User.first
        if @note.save
            flash[:notice] = "Note saved"
            redirect_to note_path(@note)
