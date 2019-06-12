@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+   before_action :set_user, only: [:edit, :update, :show]
+   before_action :require_same_user, only: [:edit, :update]
    
    def index
       @users = User.all
@@ -19,11 +21,11 @@ class UsersController < ApplicationController
    end
    
    def edit
-      @user = User.find(params[:id])
+
    end
    
    def update
-      @user = User.find(params[:id])
+
       if @user.update(user_params)
          flash[:notice] = "User details updated"
          redirect_to notes_path
@@ -33,7 +35,7 @@ class UsersController < ApplicationController
    end
    
    def show
-      @user = User.find(params[:id])
+
    end
    
    private 
@@ -41,4 +43,14 @@ class UsersController < ApplicationController
       params.require(:user).permit(:username, :email, :password) 
    end
    
+   def set_user
+      @user = User.find(params[:id])
+   end
+   
+   def require_same_user
+      if current_user != @user
+         flash[:danger] = "Nie twoje konto"
+         redirect_to root_path
+      end
+   end
 end

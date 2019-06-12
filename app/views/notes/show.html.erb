@@ -16,7 +16,10 @@
 
 
 <p>
+    <% if logged_in? && current_user == @note.user %>
     <%= link_to "Edytuj", edit_note_path , class: "btn btn-primary" %>
-    <%= link_to "Wróc do listy", notes_path , class: "btn btn-success" %>
     <%= link_to 'Usuń', note_path(@note), method: :delete, data: {confirm: "Na pewno?"}, class: "btn btn-danger" %>
+    <% end %>
 </p>
+
+    <%= link_to "Wróc do listy", notes_path , class: "btn btn-success" %>

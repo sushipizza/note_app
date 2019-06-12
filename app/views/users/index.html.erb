@@ -10,6 +10,7 @@
                 Liczba notatek: <%= pluralize(user.notes.count, "notes") if user.notes %>
             </p>
             <hr>
+            
             <%= link_to "Pokaż", user_path(user) , class: "btn btn-sm btn-success" %>
             <%= link_to "Edytuj", edit_user_path(user) , class: "btn btn-sm btn-primary" %>
             <%= link_to 'Usuń', user_path(user), method: :delete, data: {confirm: "Na pewno?"}, class: "btn btn-sm btn-danger" %>

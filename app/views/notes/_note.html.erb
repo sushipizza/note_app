@@ -15,8 +15,10 @@
             </small>
             <hr>
             <%= link_to "Pokaż", note_path(note) , class: "btn btn-sm btn-success" %>
-            <%= link_to "Edytuj", edit_note_path(note) , class: "btn btn-sm btn-primary" %>
-            <%= link_to 'Usuń', note_path(note), method: :delete, data: {confirm: "Na pewno?"}, class: "btn btn-sm btn-danger" %>
+            <% if logged_in? && current_user == note.user %>
+                <%= link_to "Edytuj", edit_note_path(note) , class: "btn btn-sm btn-primary" %>
+                <%= link_to 'Usuń', note_path(note), method: :delete, data: {confirm: "Na pewno?"}, class: "btn btn-sm btn-danger" %>
+            <% end %>
         </div>
     </div>
 <% end %>
