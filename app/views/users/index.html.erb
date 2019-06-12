@@ -1,0 +1,17 @@
+<% @users.each do |user| %>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h3 class="display-5" align="center">
+                <%= gravatar_for user %><br><br>
+                Witaj <%= user.username %>
+            </h3>
+            <p class="lead">
+                Twój login: <%= user.email %>
+            </p>
+            <hr>
+            <%= link_to "Pokaż", user_path(user) , class: "btn btn-sm btn-success" %>
+            <%= link_to "Edytuj", edit_user_path(user) , class: "btn btn-sm btn-primary" %>
+            <%= link_to 'Usuń', user_path(user), method: :delete, data: {confirm: "Na pewno?"}, class: "btn btn-sm btn-danger" %>
+        </div>
+    </div>
+<% end %>
