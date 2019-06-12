@@ -13,7 +13,7 @@ class NotesController < ApplicationController
    end
    
    def create
-       #render plain: params[:note].inspect
+       render plain: params[:note].inspect
        @note = Note.new(note_params)
        @note.user = User.first
        if @note.save
