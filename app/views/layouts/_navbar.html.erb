@@ -18,7 +18,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a><%= link_to "Nowa notatka", new_note_path, class: "dropdown-item"  %></a>
           <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a><%= link_to "Wyloguj", logout_path, method: :delete, class: "nav-link"  %></a>
         </div>
       </li>
     </ul>
