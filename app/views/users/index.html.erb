@@ -3,18 +3,18 @@
         <div class="container">
             <h3 class="display-5" align="center">
                 <%= gravatar_for user %><br><br>
-                Witaj <%= user.username %>
+                Hello <%= user.username %>
             </h3>
             <p class="lead">
-                Twój login: <%= user.email %><br>
-                Liczba notatek: <%= pluralize(user.notes.count, "notes") if user.notes %>
+                Your login: <%= user.email %><br>
+                Your notes: <%= pluralize(user.notes.count, "notes") if user.notes %>
             </p>
             <hr>
             
-            <%= link_to "Pokaż", user_path(user) , class: "btn btn-sm btn-success" %>
+            <%= link_to "Show", user_path(user) , class: "btn btn-sm btn-success" %>
             <% if logged_in? && current_user.admin? %>
-                <%= link_to "Edytuj", edit_user_path(user) , class: "btn btn-sm btn-primary" %>
-                <%= link_to 'Usuń', user_path(user), method: :delete, data: {confirm: "Na pewno?"}, class: "btn btn-sm btn-danger" %>
+                <%= link_to "Edit", edit_user_path(user) , class: "btn btn-sm btn-primary" %>
+                <%= link_to 'Delete', user_path(user), method: :delete, data: {confirm: "Na pewno?"}, class: "btn btn-sm btn-danger" %>
             <% end %>
         </div>
     </div>

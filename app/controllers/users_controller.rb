@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
    before_action :set_user, only: [:edit, :update, :show]
+   before_action :require_login, only: [:index, :edit, :show]
    before_action :require_same_user, only: [:edit, :update, :destroy]
-   before_action :require_admin, only: [:destroy]
+   before_action :require_admin, only: [:destroy, :index]
    
    def index
       @users = User.all
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
        if @user.save
            flash[:notice] = "User created"
-           redirect_to user_path(@user)
+           redirect_to login_path
        else
            render 'new'
        end
@@ -56,14 +57,21 @@ class UsersController < ApplicationController
    
    def require_same_user
       if current_user != @user and !current_user.admin?
-         flash[:danger] = "Nie twoje konto"
+         flash[:danger] = "This is not your account"
          redirect_to root_path
       end
    end
 
    def require_admin
       if logged_in? and !current_user.admin?
-         flash[:danger] = "Brak uprawnień administratorskich"
+         flash[:danger] = "You don't have admin privileges"
+         redirect_to root_path
+      end
+   end
+   
+   def require_login
+      if !logged_in?
+         flash[:danger] = "You don't have any privileges"
          redirect_to root_path
       end
    end

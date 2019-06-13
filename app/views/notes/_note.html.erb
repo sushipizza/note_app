@@ -14,10 +14,10 @@
                 Last updated at: <%= time_ago_in_words(note.updated_at) %> ago.
             </small>
             <hr>
-            <%= link_to "Pokaż", note_path(note) , class: "btn btn-sm btn-success" %>
+            <%= link_to "Show", note_path(note) , class: "btn btn-sm btn-success" %>
             <% if logged_in? && (current_user == note.user || current_user.admin?) %>
-                <%= link_to "Edytuj", edit_note_path(note) , class: "btn btn-sm btn-primary" %>
-                <%= link_to 'Usuń', note_path(note), method: :delete, data: {confirm: "Na pewno?"}, class: "btn btn-sm btn-danger" %>
+                <%= link_to "Edit", edit_note_path(note) , class: "btn btn-sm btn-primary" %>
+                <%= link_to 'Delete', note_path(note), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-danger" %>
             <% end %>
         </div>
     </div>

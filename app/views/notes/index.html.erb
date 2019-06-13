@@ -1,7 +1,8 @@
-<h1>Wszystkie notatki</h1>
+<h1 align="center">All notes</h1>
 
-<p>
-    <%= link_to "Nowa notatka", new_note_path %>
+<p align="center">
+    <br>
+    <%= link_to "New note", new_note_path , class: "btn btn-bg btn-primary" %>
 </p>
 
 <%= render 'note', obj: @notes %>

@@ -60,7 +60,7 @@ class NotesController < ApplicationController
     
     def require_same_user
       if current_user != @note.user && !current_user.admin?
-        flash[:notice] = "Mozna edytowac tylko swoje notatki"
+        flash[:notice] = "You can only edit your own notes"
         redirect_to root_path
       end
     end
