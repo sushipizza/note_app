@@ -16,10 +16,10 @@ class NotesController < ApplicationController
     end
     
     def create
-       render plain: params[:note].inspect
+       #render plain: params[:note].inspect
        @note = Note.new(note_params)
        @note.user = current_user
-       if @note.save
+       if @note.save(note_params)
            flash[:notice] = "Note saved"
            redirect_to note_path(@note)
        else
@@ -59,7 +59,7 @@ class NotesController < ApplicationController
     end
     
     def require_same_user
-      if current_user != @note.user
+      if current_user != @note.user && !current_user.admin?
         flash[:notice] = "Mozna edytowac tylko swoje notatki"
         redirect_to root_path
       end

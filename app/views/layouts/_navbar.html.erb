@@ -17,6 +17,9 @@
             Profil
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <% if current_user.admin? %>
+              <a><%= link_to "Profile użytkowników ", users_path, class: "nav-link"  %></a>
+            <% end %>
             <a><%= link_to "Moj profil ", user_path(current_user), class: "nav-link"  %></a>
             <a><%= link_to "Edytuj profil ", edit_user_path(current_user), class: "nav-link"  %></a>
             <a><%= link_to "Wyloguj", logout_path, method: :delete, class: "nav-link"  %></a>

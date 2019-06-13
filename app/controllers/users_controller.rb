@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
    before_action :set_user, only: [:edit, :update, :show]
-   before_action :require_same_user, only: [:edit, :update]
+   before_action :require_same_user, only: [:edit, :update, :destroy]
    
    def index
       @users = User.all
@@ -25,7 +25,6 @@ class UsersController < ApplicationController
    end
    
    def update
-
       if @user.update(user_params)
          flash[:notice] = "User details updated"
          redirect_to notes_path
@@ -38,6 +37,13 @@ class UsersController < ApplicationController
 
    end
    
+   def destroy
+      @user = User.find(params[:id])
+      @user.destroy
+      flash[:danger] = "User deleted"
+      redirect_to users_path
+   end
+   
    private 
    def user_params
       params.require(:user).permit(:username, :email, :password) 
@@ -48,7 +54,7 @@ class UsersController < ApplicationController
    end
    
    def require_same_user
-      if current_user != @user
+      if current_user != @user and !current_user.admin?
          flash[:danger] = "Nie twoje konto"
          redirect_to root_path
       end
