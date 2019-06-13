@@ -31,5 +31,10 @@
         <a><%= link_to "Signup", signup_path, class: "nav-link"  %></a>
       <% end %>
     </ul>
+    <% if logged_in? && current_user.admin? %>
+      <span class="navbar-text">
+        you are admin
+      </span>
+    <% end %>
   </div>
 </nav>
