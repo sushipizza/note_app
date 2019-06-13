@@ -1,7 +1,9 @@
 <% flash.each do |name, msg| %>
-<div class="alert alert-success">
-  <ul>
-    <li><%= msg %></li>
-  </ul>
+<br>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <li><%= msg %></li>
 </div>
 <% end %>

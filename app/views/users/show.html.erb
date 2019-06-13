@@ -21,4 +21,12 @@
         Your notes
     </h2>
 <% end %>
-<%= render 'notes/note', obj: @user.notes %>
+<% if current_user.notes != nil %>
+    <%= render 'notes/note', obj: @user.notes %>
+<% else %>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h5 align="center">You don't have any notes :-(</h5>
+        </div>
+    </div>
+<% end %>
