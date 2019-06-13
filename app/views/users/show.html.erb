@@ -1,13 +1,24 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h3 class="display-5" align="center">
-            <%= gravatar_for @user %><br><br>
-            Witaj <%= @user.username %>
-        </h3>
-        <p class="lead">
-            Twój login: <%= @user.email %>
-        </p>
+        <% if current_user == @user %>
+            <h3 class="display-4" align="center">
+                <%= gravatar_for @user %><br><br>
+                Hello <%= @user.username %>
+            </h3>
+            <p class="lead">
+                Your login: <%= @user.email %>
+            </p>
+        <% else %>
+            <h3 class="display-4" align="center">
+                <%= gravatar_for @user %><br><br>
+                <%= @user.username %>'s notes
+            </h3>
+        <% end %>
     </div>
 </div>
-
+<% if current_user == @user %>
+    <h2 align="center">
+        Your notes
+    </h2>
+<% end %>
 <%= render 'notes/note', obj: @user.notes %>
